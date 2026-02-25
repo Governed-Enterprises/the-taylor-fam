@@ -6,7 +6,6 @@ import FamilyCrest from "@/components/FamilyCrest";
 import { PHOTO_TIMELINE } from "@/lib/constants";
 
 const CARD_WIDTH = 280;
-const CARD_WIDTH_MOBILE = 240;
 const GAP = 24;
 
 export default function PhotoTimeline() {
@@ -92,11 +91,7 @@ export default function PhotoTimeline() {
           {PHOTO_TIMELINE.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 snap-center flex flex-col items-center"
-              style={{
-                minWidth: `${CARD_WIDTH_MOBILE}px`,
-                width: `${CARD_WIDTH}px`,
-              }}
+              className="flex-shrink-0 snap-center flex flex-col items-center w-[240px] sm:w-[280px]"
             >
               {/* Photo card */}
               <div
