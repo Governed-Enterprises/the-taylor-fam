@@ -7,12 +7,14 @@ import {
   RECORD_CATEGORIES,
   type FamilyRecordEntry,
 } from "@/lib/constants";
+import FamilyCrest from "@/components/FamilyCrest";
 
 type CategoryKey = keyof typeof RECORD_CATEGORIES;
 
 interface FamilyRecordProps {
   sortOrder: "newest" | "oldest";
   activeCategories: CategoryKey[];
+  onResetFilters: () => void;
 }
 
 // ── Year Marker ──────────────────────────────────────────────
@@ -142,6 +144,7 @@ function EventCard({
 export default function FamilyRecord({
   sortOrder,
   activeCategories,
+  onResetFilters,
 }: FamilyRecordProps) {
   // Filter & sort
   const entries = useMemo(() => {
@@ -184,12 +187,34 @@ export default function FamilyRecord({
   // Determine side for alternating layout
   let eventCounter = 0;
 
+  // Empty: entire record is empty (safety fallback)
+  if (FAMILY_RECORD.length === 0) {
+    return (
+      <div className="text-center py-20">
+        <div className="opacity-15 mx-auto w-fit">
+          <FamilyCrest size={100} animated={false} />
+        </div>
+        <p className="text-tf-textMuted text-base mt-6 max-w-[400px] mx-auto">
+          The Family Record is just beginning. Milestones will be added as the
+          family grows.
+        </p>
+      </div>
+    );
+  }
+
+  // Empty: filters active but no matches
   if (entries.length === 0) {
     return (
       <div className="text-center py-16">
         <p className="text-tf-textMuted text-base">
-          No records match the selected filters.
+          No events match your current filters.
         </p>
+        <button
+          onClick={onResetFilters}
+          className="mt-4 px-5 py-2 rounded-full text-sm font-medium bg-tf-gold text-tf-textPrimary hover:bg-tf-goldDark transition-colors duration-200"
+        >
+          Show All
+        </button>
       </div>
     );
   }

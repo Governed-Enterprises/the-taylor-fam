@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Edit3 } from "lucide-react";
 import FamilyRecord from "@/components/FamilyRecord";
 import { RECORD_CATEGORIES } from "@/lib/constants";
 
@@ -90,11 +91,29 @@ export default function FamilyRecordPage() {
         </div>
       </div>
 
+      {/* Admin note */}
+      <div className="mt-4 px-6 max-w-[700px] mx-auto">
+        <div className="bg-tf-backgroundAlt rounded-lg px-4 py-3 flex items-center justify-center gap-2 text-center">
+          <Edit3 size={14} className="text-tf-textMuted shrink-0" />
+          <p className="text-xs text-tf-textMuted">
+            Family events are recorded by the Family Administrator. To add a
+            milestone, contact{" "}
+            <a
+              href="mailto:terry@thetaylorfam.net"
+              className="text-tf-gold hover:underline"
+            >
+              terry@thetaylorfam.net
+            </a>
+          </p>
+        </div>
+      </div>
+
       {/* Timeline */}
       <section className="mt-12 px-4 sm:px-6">
         <FamilyRecord
           sortOrder={sortOrder}
           activeCategories={activeCategories}
+          onResetFilters={resetCategories}
         />
       </section>
     </div>
