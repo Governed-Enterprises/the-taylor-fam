@@ -9,20 +9,17 @@ export const metadata: Metadata = {
 
 export default function FamilyRecordPage() {
   return (
-    <div className="page-container">
-      <section className="bg-warm-gradient py-16 sm:py-20">
-        <div className="section-container text-center">
-          <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold text-tf-textPrimary mb-4">
-            Family Record
-          </h1>
-          <p className="text-tf-textMuted text-lg max-w-2xl mx-auto">
-            Documenting our family milestones, events, and cherished moments.
-          </p>
-          <div className="w-24 h-0.5 bg-tf-gold mx-auto mt-6" />
-        </div>
+    <div className="page-container pb-24">
+      <section className="pt-20 px-6 text-center">
+        <h1 className="font-serif-display text-4xl font-bold text-tf-textPrimary">
+          Family Record
+        </h1>
+        <p className="text-lg text-tf-textSecondary max-w-[500px] mx-auto mt-4">
+          Documenting our family milestones, events, and cherished moments.
+        </p>
       </section>
 
-      <section className="section-container py-16">
+      <section className="section-container mt-8">
         <FamilyRecord />
       </section>
     </div>

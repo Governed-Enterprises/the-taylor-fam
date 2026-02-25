@@ -18,19 +18,19 @@ export default function FamilyDirectory() {
               : ""
           }`}
         >
-          <div className="flex items-baseline gap-1.5">
+          <div>
             <span className="font-serif-display text-base font-medium text-tf-textPrimary">
               {member.name}
             </span>
             {member.role && (
-              <span className="hidden sm:inline text-sm text-tf-textMuted italic">
+              <span className="hidden sm:inline text-sm text-tf-textMuted italic ml-1.5">
                 ({member.role})
               </span>
             )}
             {member.role && (
-              <span className="sm:hidden text-sm text-tf-textMuted italic block">
+              <p className="sm:hidden text-sm text-tf-textMuted italic">
                 {member.role}
-              </span>
+              </p>
             )}
           </div>
           <a

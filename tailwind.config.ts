@@ -32,13 +32,7 @@ const config: Config = {
         script: ["var(--font-cormorant)", "Cormorant Garamond", "Georgia", "serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
       },
-      backgroundImage: {
-        "warm-gradient":
-          "linear-gradient(135deg, #faf8f4 0%, #f3f0e8 50%, #faf8f4 100%)",
-        "gold-gradient":
-          "linear-gradient(135deg, #c9a84c 0%, #a08a3a 100%)",
-      },
-      animation: {
+animation: {
         "fade-in": "fadeIn 0.6s ease-out",
         "slide-up": "slideUp 0.6s ease-out",
         "slide-in-right": "slideInRight 0.6s ease-out",

@@ -9,20 +9,17 @@ export const metadata: Metadata = {
 
 export default function FamilyTreePage() {
   return (
-    <div className="page-container">
-      <section className="bg-warm-gradient py-16 sm:py-20">
-        <div className="section-container text-center">
-          <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold text-tf-textPrimary mb-4">
-            Family Tree
-          </h1>
-          <p className="text-tf-textMuted text-lg max-w-2xl mx-auto">
-            A visual map of the Taylor family across generations.
-          </p>
-          <div className="w-24 h-0.5 bg-tf-gold mx-auto mt-6" />
-        </div>
+    <div className="page-container pb-24">
+      <section className="pt-20 px-6 text-center">
+        <h1 className="font-serif-display text-4xl font-bold text-tf-textPrimary">
+          Family Tree
+        </h1>
+        <p className="text-lg text-tf-textSecondary max-w-[500px] mx-auto mt-4">
+          A visual map of the Taylor family across generations.
+        </p>
       </section>
 
-      <section className="section-container py-16">
+      <section className="section-container mt-8">
         <FamilyTree />
       </section>
     </div>
