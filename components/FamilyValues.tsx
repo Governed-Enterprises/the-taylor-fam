@@ -1,43 +1,49 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Shield } from "lucide-react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { FAMILY_VALUES } from "@/lib/constants";
+
+function ValueStatement({ text, index }: { text: string; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      transition={{ delay: index * 0.15, duration: 0.5 }}
+      className="mb-12 flex flex-col items-center text-center"
+    >
+      {/* Small vertical gold accent line */}
+      <div className="w-[3px] h-4 bg-tf-gold mb-4" />
+      <p className="font-serif-display text-lg sm:text-xl text-tf-textPrimary italic max-w-lg">
+        {text}
+      </p>
+    </motion.div>
+  );
+}
 
 export default function FamilyValues() {
   return (
-    <section className="py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="section-heading text-center">Our Values</h2>
-        <p className="section-subheading text-center">
-          The principles that guide our family
-        </p>
+    <section className="pb-16">
+      {/* Gold divider */}
+      <div className="mx-auto mt-16" style={{ width: "60%", maxWidth: "480px" }}>
+        <div className="h-px bg-tf-gold/30" />
+      </div>
 
-        <div className="max-w-2xl mx-auto space-y-4">
-          {FAMILY_VALUES.map((value, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="flex items-start gap-4 p-5 rounded-xl bg-tf-card card-shadow hover:card-shadow-hover transition-all duration-300 border border-tf-borderLight"
-            >
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-tf-goldLight/40 flex items-center justify-center mt-0.5">
-                <Shield size={18} className="text-tf-goldDark" />
-              </div>
-              <p className="font-script text-lg text-tf-textSecondary leading-relaxed">
-                &ldquo;{value}&rdquo;
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+      {/* Heading */}
+      <h2 className="font-serif-display text-2xl text-tf-textPrimary text-center mt-16">
+        Our Principles
+      </h2>
+
+      {/* Values */}
+      <div className="mt-12">
+        {FAMILY_VALUES.map((value, index) => (
+          <ValueStatement key={index} text={value} index={index} />
+        ))}
+      </div>
     </section>
   );
 }

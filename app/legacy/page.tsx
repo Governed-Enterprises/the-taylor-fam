@@ -29,10 +29,8 @@ export default function LegacyPage() {
       </section>
 
       {/* Family Values */}
-      <section className="bg-tf-backgroundAlt py-4">
-        <div className="section-container">
-          <FamilyValues />
-        </div>
+      <section className="px-6">
+        <FamilyValues />
       </section>
 
       {/* Photo Timeline */}
