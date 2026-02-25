@@ -2,26 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap");
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #FFFDF7;
+  --foreground: #1E1C19;
+  --burgundy: #8B1A3A;
+  --burgundy-light: #B8486A;
+  --burgundy-dark: #6E1430;
+  --gold: #D4A84B;
+  --gold-light: #FFE484;
+  --gold-dark: #8A6D23;
+  --cream: #FFF9E8;
+  --cream-dark: #FFF3D1;
+  --warm-gray: #8A8275;
+  --warm-gray-light: #F0EEEA;
+  --warm-gray-dark: #504B43;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--burgundy);
+}
+
+/* Selection colors */
+::selection {
+  background: var(--burgundy);
+  color: var(--cream);
+}
+
+/* Utility classes */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .font-serif-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--burgundy) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-shadow {
+    box-shadow: 0 4px 20px rgba(139, 26, 58, 0.08),
+                0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  .card-shadow-hover {
+    box-shadow: 0 8px 30px rgba(139, 26, 58, 0.12),
+                0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Page transition wrapper */
+@layer components {
+  .page-container {
+    @apply min-h-screen bg-cream-50;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-heading {
+    @apply font-serif-display text-3xl sm:text-4xl lg:text-5xl font-bold text-burgundy-700 mb-4;
+  }
+
+  .section-subheading {
+    @apply font-serif-display text-xl sm:text-2xl text-warmGray-600 mb-8;
   }
 }
