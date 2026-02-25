@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PortalLogin from "@/components/PortalLogin";
+import FamilyCrest from "@/components/FamilyCrest";
 
 export const metadata: Metadata = {
   title: "Family Portal",
@@ -9,22 +10,15 @@ export const metadata: Metadata = {
 
 export default function PortalPage() {
   return (
-    <div className="page-container">
-      <section className="bg-warm-gradient py-16 sm:py-20">
-        <div className="section-container text-center">
-          <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold text-tf-textPrimary mb-4">
-            Family Portal
-          </h1>
-          <p className="text-tf-textMuted text-lg max-w-2xl mx-auto">
-            Access private family content, photos, and documents.
-          </p>
-          <div className="w-24 h-0.5 bg-tf-gold mx-auto mt-6" />
-        </div>
-      </section>
-
-      <section className="section-container py-16">
-        <PortalLogin />
-      </section>
+    <div className="page-container flex flex-col items-center justify-center px-6" style={{ minHeight: "calc(100vh - 64px)" }}>
+      <FamilyCrest size={80} animated={false} />
+      <h1 className="font-serif-display text-3xl font-bold text-tf-textPrimary mt-6">
+        Family Portal
+      </h1>
+      <p className="text-base text-tf-textSecondary mt-2">
+        A private space for Taylor family members.
+      </p>
+      <PortalLogin />
     </div>
   );
 }
