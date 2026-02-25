@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import FamilyHistory from "@/components/FamilyHistory";
 import FamilyValues from "@/components/FamilyValues";
 import PhotoTimeline from "@/components/PhotoTimeline";
+import { CrossPageLinks } from "@/components/CrossPageNav";
 
 export const metadata: Metadata = {
   title: "Our Legacy",
@@ -37,6 +38,14 @@ export default function LegacyPage() {
       <section className="section-container">
         <PhotoTimeline />
       </section>
+
+      {/* Cross-page navigation */}
+      <CrossPageLinks
+        links={[
+          { text: "Explore Our Lineage", href: "/family-tree" },
+          { text: "See the Family Record", href: "/family-record" },
+        ]}
+      />
     </div>
   );
 }

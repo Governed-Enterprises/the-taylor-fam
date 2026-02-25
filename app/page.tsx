@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { BookOpen, GitBranch, ScrollText } from "lucide-react";
 import FamilyCrest from "@/components/FamilyCrest";
 import FamilyDirectory from "@/components/FamilyDirectory";
+import { ExploreCard } from "@/components/CrossPageNav";
 import { SITE_CONTENT } from "@/lib/constants";
 
 export default function Home() {
@@ -73,6 +75,38 @@ export default function Home() {
         {/* Directory list */}
         <div className="mt-6">
           <FamilyDirectory />
+        </div>
+      </motion.section>
+
+      {/* Section D — Explore */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 0.6 }}
+        className="mt-20 px-6"
+      >
+        <h2 className="font-serif-display text-xl text-tf-textPrimary text-center">
+          Explore
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 max-w-[600px] mx-auto">
+          <ExploreCard
+            href="/legacy"
+            icon={BookOpen}
+            title="Our Legacy"
+            description="The story behind the Taylor name."
+          />
+          <ExploreCard
+            href="/family-tree"
+            icon={GitBranch}
+            title="Family Tree"
+            description="Our lineage across generations."
+          />
+          <ExploreCard
+            href="/family-record"
+            icon={ScrollText}
+            title="Family Record"
+            description="Milestones and moments that matter."
+          />
         </div>
       </motion.section>
     </div>

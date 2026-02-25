@@ -4,6 +4,7 @@ import { useState } from "react";
 import { GitBranch, List } from "lucide-react";
 import FamilyTree from "@/components/FamilyTree";
 import { GENERATION_LABELS } from "@/lib/familyData";
+import { CrossPageLinks } from "@/components/CrossPageNav";
 
 const generations = Object.values(GENERATION_LABELS).filter((g) => g.number <= 4);
 
@@ -82,6 +83,14 @@ export default function FamilyTreePage() {
       <section className="mt-12 px-4 sm:px-6">
         <FamilyTree viewMode={viewMode} />
       </section>
+
+      {/* Cross-page navigation */}
+      <CrossPageLinks
+        links={[
+          { text: "Read Our Story", href: "/legacy" },
+          { text: "View the Family Record", href: "/family-record" },
+        ]}
+      />
     </div>
   );
 }

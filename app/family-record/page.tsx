@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Edit3 } from "lucide-react";
 import FamilyRecord from "@/components/FamilyRecord";
 import { RECORD_CATEGORIES } from "@/lib/constants";
+import { CrossPageLinks } from "@/components/CrossPageNav";
 
 type CategoryKey = keyof typeof RECORD_CATEGORIES;
 const allCategories = Object.keys(RECORD_CATEGORIES) as CategoryKey[];
@@ -116,6 +117,14 @@ export default function FamilyRecordPage() {
           onResetFilters={resetCategories}
         />
       </section>
+
+      {/* Cross-page navigation */}
+      <CrossPageLinks
+        links={[
+          { text: "Explore the Family Tree", href: "/family-tree" },
+          { text: "Read Our Legacy", href: "/legacy" },
+        ]}
+      />
     </div>
   );
 }
