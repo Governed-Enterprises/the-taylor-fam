@@ -9,66 +9,34 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        // Warm design system
-        cream: {
-          50: "#FFFDF7",
-          100: "#FFF9E8",
-          200: "#FFF3D1",
-          300: "#FFEAB0",
-          400: "#FFE08F",
-          500: "#F5D680",
-        },
-        burgundy: {
-          50: "#FDF2F4",
-          100: "#F5D0D8",
-          200: "#E8A1B1",
-          300: "#D4728A",
-          400: "#B8486A",
-          500: "#8B1A3A",
-          600: "#6E1430",
-          700: "#520F24",
-          800: "#3A0A1A",
-          900: "#220610",
-        },
-        gold: {
-          50: "#FFFDF0",
-          100: "#FFF8D6",
-          200: "#FFEFAD",
-          300: "#FFE484",
-          400: "#FFD85B",
-          500: "#D4A84B",
-          600: "#B8922F",
-          700: "#8A6D23",
-          800: "#5C4917",
-          900: "#2E240C",
-        },
-        warmGray: {
-          50: "#FAF9F7",
-          100: "#F0EEEA",
-          200: "#E0DDD6",
-          300: "#C8C3B8",
-          400: "#A8A193",
-          500: "#8A8275",
-          600: "#6B655A",
-          700: "#504B43",
-          800: "#36332E",
-          900: "#1E1C19",
+        // Taylor Fam namespace — all design tokens from COLOR_PALETTE
+        tf: {
+          background: "#faf8f4",
+          backgroundAlt: "#f3f0e8",
+          card: "#ffffff",
+          textPrimary: "#3d2b1f",
+          textSecondary: "#6b5a4e",
+          textMuted: "#9c8b7e",
+          gold: "#c9a84c",
+          goldLight: "#e0d5a0",
+          goldDark: "#a08a3a",
+          sage: "#7a8c6e",
+          sageMuted: "#a3b297",
+          border: "#e5ddd3",
+          borderLight: "#f0ebe3",
         },
       },
       fontFamily: {
-        serif: ["Playfair Display", "Georgia", "serif"],
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        heading: ["var(--font-playfair)", "Playfair Display", "Georgia", "serif"],
+        body: ["var(--font-inter)", "Inter", "var(--font-geist-sans)", "system-ui", "sans-serif"],
+        script: ["var(--font-cormorant)", "Cormorant Garamond", "Georgia", "serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
       },
       backgroundImage: {
         "warm-gradient":
-          "linear-gradient(135deg, #FFF9E8 0%, #FFFDF7 50%, #FDF2F4 100%)",
-        "burgundy-gradient":
-          "linear-gradient(135deg, #8B1A3A 0%, #6E1430 100%)",
+          "linear-gradient(135deg, #faf8f4 0%, #f3f0e8 50%, #faf8f4 100%)",
         "gold-gradient":
-          "linear-gradient(135deg, #D4A84B 0%, #B8922F 100%)",
+          "linear-gradient(135deg, #c9a84c 0%, #a08a3a 100%)",
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",

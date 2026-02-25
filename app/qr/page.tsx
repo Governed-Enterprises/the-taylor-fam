@@ -13,14 +13,14 @@ export default function QRPage() {
       {/* Page Header */}
       <section className="bg-warm-gradient py-16 sm:py-20">
         <div className="section-container text-center">
-          <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold text-burgundy-700 mb-4">
+          <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold text-tf-textPrimary mb-4">
             Share Our Site
           </h1>
-          <p className="text-warmGray-500 text-lg max-w-2xl mx-auto">
+          <p className="text-tf-textMuted text-lg max-w-2xl mx-auto">
             Scan the QR code or download it to share with family members. Keep
             everyone connected.
           </p>
-          <div className="w-24 h-0.5 bg-gold-500 mx-auto mt-6" />
+          <div className="w-24 h-0.5 bg-tf-gold mx-auto mt-6" />
         </div>
       </section>
 

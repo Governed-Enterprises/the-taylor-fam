@@ -12,18 +12,18 @@ export default function PortalLogin() {
       className="max-w-md mx-auto"
     >
       <div className="text-center mb-8">
-        <div className="w-16 h-16 rounded-full bg-burgundy-50 flex items-center justify-center mx-auto mb-4">
-          <Lock size={28} className="text-burgundy-500" />
+        <div className="w-16 h-16 rounded-full bg-tf-backgroundAlt flex items-center justify-center mx-auto mb-4">
+          <Lock size={28} className="text-tf-goldDark" />
         </div>
-        <h2 className="font-serif-display text-2xl font-bold text-burgundy-700 mb-2">
+        <h2 className="font-serif-display text-2xl font-bold text-tf-textPrimary mb-2">
           Family Portal
         </h2>
-        <p className="text-warmGray-500 text-sm">
+        <p className="text-tf-textMuted text-sm">
           Sign in to access private family content
         </p>
       </div>
 
-      <div className="bg-white rounded-xl card-shadow border border-cream-300 p-6">
+      <div className="bg-tf-card rounded-xl card-shadow border border-tf-borderLight p-6">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -34,52 +34,52 @@ export default function PortalLogin() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-warmGray-700 mb-1"
+              className="block text-sm font-medium text-tf-textSecondary mb-1"
             >
               Email
             </label>
             <div className="relative">
               <Mail
                 size={16}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-warmGray-400"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-tf-textMuted"
               />
               <input
                 id="email"
                 type="email"
                 placeholder="your@email.com"
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-cream-300 bg-cream-50 text-warmGray-800 placeholder:text-warmGray-400 focus:outline-none focus:ring-2 focus:ring-burgundy-300 focus:border-burgundy-300 transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-tf-border bg-tf-background text-tf-textPrimary placeholder:text-tf-textMuted focus:outline-none focus:ring-2 focus:ring-tf-gold/50 focus:border-tf-gold transition-colors"
               />
             </div>
           </div>
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-warmGray-700 mb-1"
+              className="block text-sm font-medium text-tf-textSecondary mb-1"
             >
               Password
             </label>
             <div className="relative">
               <KeyRound
                 size={16}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-warmGray-400"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-tf-textMuted"
               />
               <input
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-cream-300 bg-cream-50 text-warmGray-800 placeholder:text-warmGray-400 focus:outline-none focus:ring-2 focus:ring-burgundy-300 focus:border-burgundy-300 transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-tf-border bg-tf-background text-tf-textPrimary placeholder:text-tf-textMuted focus:outline-none focus:ring-2 focus:ring-tf-gold/50 focus:border-tf-gold transition-colors"
               />
             </div>
           </div>
           <button
             type="submit"
-            className="w-full py-2.5 bg-burgundy-500 hover:bg-burgundy-600 text-white rounded-lg font-medium transition-colors"
+            className="w-full py-2.5 bg-tf-textPrimary hover:bg-tf-textSecondary text-white rounded-lg font-medium transition-colors"
           >
             Sign In
           </button>
         </form>
 
-        <p className="mt-4 text-center text-xs text-warmGray-400">
+        <p className="mt-4 text-center text-xs text-tf-textMuted">
           Portal access is for Taylor family members only.
         </p>
       </div>

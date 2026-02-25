@@ -1,14 +1,39 @@
 import type { Metadata } from "next";
+import { Playfair_Display, Inter, Cormorant_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  display: "swap",
+  weight: ["400", "600"],
+  style: ["italic"],
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -17,16 +42,16 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "The Taylor Family — Faith, Family, Legacy",
+    default: "The Taylor Family",
     template: "%s | The Taylor Family",
   },
   description:
-    "The official home of the Taylor family — celebrating our legacy, honoring our roots, and staying connected across generations.",
+    "Rooted in faith, discipline, and generational purpose.",
   keywords: ["Taylor family", "family website", "legacy", "family tree"],
   openGraph: {
     title: "The Taylor Family",
     description:
-      "Faith, Family, Legacy — The official home of the Taylor family.",
+      "Govern. Build. Pass Down. — The official home of the Taylor family.",
     url: "https://thetaylorfam.net",
     siteName: "The Taylor Family",
     locale: "en_US",
@@ -42,10 +67,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${playfair.variable} ${inter.variable} ${cormorant.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen pt-16">{children}</main>
         <Footer />
       </body>
     </html>

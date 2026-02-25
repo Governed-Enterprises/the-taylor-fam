@@ -5,7 +5,7 @@ import { ArrowRight, Heart, MapPin, QrCode } from "lucide-react";
 import Link from "next/link";
 import FamilyCrest from "@/components/FamilyCrest";
 import FamilyDirectory from "@/components/FamilyDirectory";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONTENT } from "@/lib/constants";
 
 export default function Home() {
   return (
@@ -14,8 +14,8 @@ export default function Home() {
       <section className="relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-warm-gradient" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-burgundy-50 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-gold-100 rounded-full blur-3xl opacity-40 translate-y-1/2 -translate-x-1/2" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-tf-goldLight/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-tf-sageMuted/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
         <div className="relative section-container py-20 sm:py-28 lg:py-36">
           <div className="max-w-3xl mx-auto text-center">
@@ -27,19 +27,29 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="font-serif-display text-5xl sm:text-6xl lg:text-7xl font-bold text-burgundy-700 mb-4"
+              className="font-serif-display text-5xl sm:text-6xl lg:text-7xl font-bold text-tf-textPrimary mb-4"
             >
-              The Taylor Family
+              {SITE_CONTENT.familyName}
             </motion.h1>
 
-            {/* Tagline */}
+            {/* Motto */}
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-xl sm:text-2xl text-warmGray-600 font-serif-display italic mb-8"
+              className="text-xl sm:text-2xl text-tf-textSecondary font-script mb-3"
             >
-              {SITE_CONFIG.tagline}
+              {SITE_CONTENT.motto}
+            </motion.p>
+
+            {/* Established */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="text-sm text-tf-textMuted tracking-widest uppercase mb-8"
+            >
+              {SITE_CONTENT.established}
             </motion.p>
 
             {/* Decorative divider */}
@@ -47,17 +57,17 @@ export default function Home() {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.7, duration: 0.6 }}
-              className="w-24 h-0.5 bg-gold-500 mx-auto mb-8"
+              className="w-24 h-0.5 bg-tf-gold mx-auto mb-8"
             />
 
-            {/* Description */}
+            {/* Home Statement */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.6 }}
-              className="text-warmGray-500 text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
+              className="text-tf-textSecondary text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
             >
-              {SITE_CONFIG.description}
+              {SITE_CONTENT.homeStatement}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -69,14 +79,14 @@ export default function Home() {
             >
               <Link
                 href="/legacy"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-burgundy-500 hover:bg-burgundy-600 text-white rounded-lg font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-tf-textPrimary hover:bg-tf-textSecondary text-white rounded-lg font-medium transition-colors"
               >
                 Our Legacy
                 <ArrowRight size={18} />
               </Link>
               <Link
                 href="/qr"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border-2 border-gold-500 text-gold-700 hover:bg-gold-50 rounded-lg font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border-2 border-tf-gold text-tf-goldDark hover:bg-tf-goldLight/20 rounded-lg font-medium transition-colors"
               >
                 Share with Family
               </Link>
@@ -93,18 +103,18 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="p-6 rounded-xl bg-white card-shadow border border-cream-300 text-center"
+            className="p-6 rounded-xl bg-tf-card card-shadow border border-tf-borderLight text-center"
           >
-            <Heart size={28} className="mx-auto text-burgundy-500 mb-3" />
-            <h3 className="font-serif-display text-lg font-semibold text-burgundy-700 mb-2">
+            <Heart size={28} className="mx-auto text-tf-gold mb-3" />
+            <h3 className="font-serif-display text-lg font-semibold text-tf-textPrimary mb-2">
               Our Story
             </h3>
-            <p className="text-sm text-warmGray-500 mb-4">
+            <p className="text-sm text-tf-textMuted mb-4">
               Discover the history and values that define the Taylor family.
             </p>
             <Link
               href="/legacy"
-              className="text-sm text-burgundy-500 hover:text-burgundy-600 font-medium"
+              className="text-sm text-tf-goldDark hover:text-tf-gold font-medium"
             >
               Read more &rarr;
             </Link>
@@ -115,18 +125,18 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="p-6 rounded-xl bg-white card-shadow border border-cream-300 text-center"
+            className="p-6 rounded-xl bg-tf-card card-shadow border border-tf-borderLight text-center"
           >
-            <MapPin size={28} className="mx-auto text-gold-600 mb-3" />
-            <h3 className="font-serif-display text-lg font-semibold text-burgundy-700 mb-2">
+            <MapPin size={28} className="mx-auto text-tf-sage mb-3" />
+            <h3 className="font-serif-display text-lg font-semibold text-tf-textPrimary mb-2">
               Family Tree
             </h3>
-            <p className="text-sm text-warmGray-500 mb-4">
+            <p className="text-sm text-tf-textMuted mb-4">
               Explore our family connections across generations.
             </p>
             <Link
               href="/family-tree"
-              className="text-sm text-burgundy-500 hover:text-burgundy-600 font-medium"
+              className="text-sm text-tf-goldDark hover:text-tf-gold font-medium"
             >
               Coming soon &rarr;
             </Link>
@@ -137,18 +147,18 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="p-6 rounded-xl bg-white card-shadow border border-cream-300 text-center"
+            className="p-6 rounded-xl bg-tf-card card-shadow border border-tf-borderLight text-center"
           >
-            <QrCode size={28} className="mx-auto text-gold-600 mb-3" />
-            <h3 className="font-serif-display text-lg font-semibold text-burgundy-700 mb-2">
+            <QrCode size={28} className="mx-auto text-tf-sage mb-3" />
+            <h3 className="font-serif-display text-lg font-semibold text-tf-textPrimary mb-2">
               Stay Connected
             </h3>
-            <p className="text-sm text-warmGray-500 mb-4">
+            <p className="text-sm text-tf-textMuted mb-4">
               Share our site and keep the family in the loop.
             </p>
             <Link
               href="/qr"
-              className="text-sm text-burgundy-500 hover:text-burgundy-600 font-medium"
+              className="text-sm text-tf-goldDark hover:text-tf-gold font-medium"
             >
               Get QR code &rarr;
             </Link>
@@ -158,7 +168,7 @@ export default function Home() {
 
       {/* Family Directory */}
       <section className="section-container pb-16">
-        <div className="max-w-2xl mx-auto bg-white rounded-xl card-shadow border border-cream-300 p-6">
+        <div className="max-w-2xl mx-auto bg-tf-card rounded-xl card-shadow border border-tf-borderLight p-6">
           <FamilyDirectory />
         </div>
       </section>

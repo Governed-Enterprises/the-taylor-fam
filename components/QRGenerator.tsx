@@ -4,7 +4,7 @@ import { useRef, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { motion } from "framer-motion";
 import { Download, Share2 } from "lucide-react";
-import { SITE_CONFIG, COLORS } from "@/lib/constants";
+import { SITE_CONFIG, COLOR_PALETTE } from "@/lib/constants";
 
 export default function QRGenerator() {
   const qrRef = useRef<HTMLDivElement>(null);
@@ -25,10 +25,8 @@ export default function QRGenerator() {
 
     img.onload = () => {
       if (!ctx) return;
-      // White background
       ctx.fillStyle = "#FFFFFF";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      // Draw QR centered with padding
       const padding = 64;
       ctx.drawImage(
         img,
@@ -74,20 +72,20 @@ export default function QRGenerator() {
       {/* QR Code Display */}
       <div
         ref={qrRef}
-        className="p-8 bg-white rounded-2xl card-shadow border border-cream-300"
+        className="p-8 bg-tf-card rounded-2xl card-shadow border border-tf-borderLight"
       >
         <QRCodeSVG
           value={SITE_CONFIG.url}
           size={256}
           bgColor="#FFFFFF"
-          fgColor={COLORS.burgundy}
+          fgColor={COLOR_PALETTE.textPrimary}
           level="H"
           includeMargin={false}
         />
       </div>
 
       {/* URL display */}
-      <p className="mt-4 text-warmGray-500 text-sm font-mono">
+      <p className="mt-4 text-tf-textMuted text-sm font-mono">
         {SITE_CONFIG.url}
       </p>
 
@@ -95,14 +93,14 @@ export default function QRGenerator() {
       <div className="flex gap-4 mt-6">
         <button
           onClick={downloadQR}
-          className="flex items-center gap-2 px-6 py-3 bg-burgundy-500 hover:bg-burgundy-600 text-white rounded-lg transition-colors font-medium"
+          className="flex items-center gap-2 px-6 py-3 bg-tf-textPrimary hover:bg-tf-textSecondary text-white rounded-lg transition-colors font-medium"
         >
           <Download size={18} />
           Download QR
         </button>
         <button
           onClick={shareLink}
-          className="flex items-center gap-2 px-6 py-3 bg-gold-600 hover:bg-gold-700 text-white rounded-lg transition-colors font-medium"
+          className="flex items-center gap-2 px-6 py-3 bg-tf-gold hover:bg-tf-goldDark text-white rounded-lg transition-colors font-medium"
         >
           <Share2 size={18} />
           Share Link

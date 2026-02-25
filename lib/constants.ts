@@ -1,121 +1,131 @@
 // ============================================
-// The Taylor Fam — Constants & Content
+// The Taylor Family — Design Tokens & Content
 // ============================================
 
+// 1. Color Palette
+export const COLOR_PALETTE = {
+  background: "#faf8f4",
+  backgroundAlt: "#f3f0e8",
+  cardBackground: "#ffffff",
+  textPrimary: "#3d2b1f",
+  textSecondary: "#6b5a4e",
+  textMuted: "#9c8b7e",
+  gold: "#c9a84c",
+  goldLight: "#e0d5a0",
+  goldDark: "#a08a3a",
+  sage: "#7a8c6e",
+  sageMuted: "#a3b297",
+  border: "#e5ddd3",
+  borderLight: "#f0ebe3",
+} as const;
+
+// 2. Typography
+export const TYPOGRAPHY = {
+  headingFont: "Playfair Display",
+  bodyFont: "Inter",
+  scriptFont: "Cormorant Garamond",
+} as const;
+
+// 3. Site Content
+export const SITE_CONTENT = {
+  familyName: "The Taylor Family",
+  motto: "Govern. Build. Pass Down.",
+  homeStatement:
+    "The Taylor family is rooted in faith, discipline, and generational purpose. We believe in governing ourselves, building with our own hands, and passing down what matters to those who come after us. This is our home — our history, our family, and our future.",
+  established: "Established 2019",
+  footerPoweredBy: "Powered by Governed Enterprises",
+} as const;
+
+// Keep SITE_CONFIG for backward compat (Navbar, Footer, QR, etc.)
 export const SITE_CONFIG = {
-  name: "The Taylor Family",
-  tagline: "Faith, Family, Legacy",
+  name: SITE_CONTENT.familyName,
+  tagline: SITE_CONTENT.motto,
   url: "https://thetaylorfam.net",
-  description:
-    "The official home of the Taylor family — celebrating our legacy, honoring our roots, and staying connected across generations.",
+  description: SITE_CONTENT.homeStatement,
 };
 
+// Navigation
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Our Legacy", href: "/legacy" },
   { label: "Family Tree", href: "/family-tree" },
   { label: "Family Record", href: "/family-record" },
-  { label: "QR Code", href: "/qr" },
-  { label: "Portal", href: "/portal" },
+  { label: "Family Portal", href: "/portal", icon: "Lock" },
 ] as const;
 
-export const COLORS = {
-  burgundy: "#8B1A3A",
-  burgundyLight: "#B8486A",
-  burgundyDark: "#6E1430",
-  gold: "#D4A84B",
-  goldLight: "#FFE484",
-  goldDark: "#8A6D23",
-  cream: "#FFF9E8",
-  creamLight: "#FFFDF7",
-  warmGray: "#8A8275",
-  warmGrayLight: "#F0EEEA",
-  warmGrayDark: "#504B43",
-} as const;
-
-export const FAMILY_VALUES = [
-  {
-    title: "Faith",
-    description:
-      "Our foundation is built on faith. We trust in God's plan and lean on His strength in all we do.",
-    icon: "Heart",
-  },
-  {
-    title: "Unity",
-    description:
-      "We stand together through every season — celebrating victories and carrying each other through trials.",
-    icon: "Users",
-  },
-  {
-    title: "Legacy",
-    description:
-      "We honor those who came before us and build a path for those who will follow.",
-    icon: "Crown",
-  },
-  {
-    title: "Love",
-    description:
-      "Love is the thread that holds us together — unconditional, unwavering, and always present.",
-    icon: "Sparkles",
-  },
-  {
-    title: "Resilience",
-    description:
-      "Through hardship and change, we persevere. Our family's strength is forged in adversity.",
-    icon: "Shield",
-  },
-  {
-    title: "Growth",
-    description:
-      "We pursue knowledge, embrace change, and encourage each generation to reach higher.",
-    icon: "TrendingUp",
-  },
-] as const;
-
-export const FAMILY_HISTORY = {
-  title: "Our Story",
-  subtitle: "A Legacy Written in Love",
-  narrative: `The Taylor family story is one of faith, perseverance, and unbreakable bonds. Our roots run deep, nourished by the values passed down through generations — values of hard work, devotion to family, and trust in God's plan.
-
-From humble beginnings, our family has grown and flourished. Each generation has added its own chapter to our story, carrying forward the traditions that define us while forging new paths of their own.
-
-Today, the Taylor family stands as a testament to the power of love and unity. Spread across cities and states, we remain connected by the invisible threads of shared memories, common values, and an unwavering commitment to one another.
-
-This site is our digital gathering place — a space to celebrate who we are, remember where we came from, and look forward to where we're going together.`,
-};
-
+// 4. Family Directory
 export const FAMILY_DIRECTORY = [
   {
-    name: "Taylor Family Group",
-    email: "family@thetaylorfam.net",
-    role: "Family Group",
+    name: "Terry Taylor",
+    email: "terry@thetaylorfam.net",
+    role: "Head of Household",
+  },
+  {
+    name: "[Wife Name] Taylor",
+    email: "wife@thetaylorfam.net",
+    role: "",
+  },
+  {
+    name: "[Son 1] Taylor",
+    email: "son1@thetaylorfam.net",
+    role: "",
+  },
+  {
+    name: "[Son 2] Taylor",
+    email: "son2@thetaylorfam.net",
+    role: "",
+  },
+  {
+    name: "[Son 3] Taylor",
+    email: "son3@thetaylorfam.net",
+    role: "",
   },
 ] as const;
 
+// 5. Family History
+export const FAMILY_HISTORY = {
+  roots:
+    "The Taylor family story begins with the generations before us — men and women who worked hard, kept faith, and laid the groundwork for everything we have today. From grandparents who built with their hands and believed in the power of discipline, our roots are deep and strong. Their sacrifices echo in every decision we make and every value we hold.",
+  present:
+    "Today, the Taylor family stands firm. Based and building, we are a family driven by purpose. Faith is our foundation, discipline is our daily practice, and love is the bond that holds it all together. We are raising sons to be men of character, creating a home that reflects who we are, and building something that will outlast us.",
+  future:
+    "We are not just living — we are building a legacy. Every business we launch, every lesson we teach our children, every covenant we honor is a brick in the foundation of something generational. The Taylor name will carry weight because we gave it weight. This is our vision: govern, build, pass down.",
+};
+
+// 6. Family Values
+export const FAMILY_VALUES = [
+  "We govern ourselves before we govern anything else.",
+  "We build what we own.",
+  "We pass down knowledge, not just wealth.",
+  "We honor the covenant.",
+  "We protect the family name.",
+] as const;
+
+// 7. Photo Timeline
 export const PHOTO_TIMELINE = [
   {
-    year: "The Beginning",
-    caption: "Where it all started",
-    placeholder: true,
+    year: "2019",
+    caption: "First family home",
+    image: "/images/family/placeholder-1.jpg",
   },
   {
-    year: "Growing Together",
-    caption: "Building our foundation",
-    placeholder: true,
+    year: "2020",
+    caption: "Growing the family",
+    image: "/images/family/placeholder-2.jpg",
   },
   {
-    year: "New Generations",
-    caption: "The family continues to grow",
-    placeholder: true,
+    year: "2022",
+    caption: "[Son] born",
+    image: "/images/family/placeholder-3.jpg",
   },
   {
-    year: "Celebrations",
-    caption: "Moments that brought us together",
-    placeholder: true,
+    year: "2024",
+    caption: "Governed Enterprises founded",
+    image: "/images/family/placeholder-4.jpg",
   },
   {
-    year: "Today",
-    caption: "Our family, stronger than ever",
-    placeholder: true,
+    year: "2025",
+    caption: "Building the future",
+    image: "/images/family/placeholder-5.jpg",
   },
 ] as const;
