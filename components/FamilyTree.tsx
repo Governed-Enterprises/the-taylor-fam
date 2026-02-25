@@ -9,11 +9,12 @@ import {
 } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
-import { X, ZoomIn, ZoomOut, Maximize2, User } from "lucide-react";
+import { X, ZoomIn, ZoomOut, Maximize2, User, ChevronDown, Heart } from "lucide-react";
 import {
   FAMILY_MEMBERS,
   GENERATION_LABELS,
   getGeneration,
+  getChildren,
 } from "@/lib/familyData";
 import type { FamilyMember } from "@/lib/familyData";
 
@@ -478,26 +479,196 @@ function TreeView({
 }
 
 // ============================================
-// List View (for mobile)
+// List View (for mobile) — Accordion style
 // ============================================
+
+function MemberListItem({
+  member,
+  selectedId,
+  onSelect,
+}: {
+  member: FamilyMember;
+  selectedId: string | null;
+  onSelect: (id: string | null) => void;
+}) {
+  const isDeceased = !!member.deathYear;
+  const yearDisplay = member.deathYear
+    ? `${member.birthYear}–${member.deathYear}`
+    : `b. ${member.birthYear}`;
+  const isExpanded = selectedId === member.id;
+
+  return (
+    <div>
+      <button
+        onClick={() => onSelect(isExpanded ? null : member.id)}
+        className="w-full text-left flex items-center gap-3 py-3 hover:bg-tf-backgroundAlt/50 -mx-2 px-2 rounded-lg transition-colors"
+      >
+        <div
+          className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-sm font-serif-display font-semibold ${
+            member.gender === "male"
+              ? "bg-tf-textPrimary/10 text-tf-textPrimary"
+              : "bg-tf-gold/15 text-tf-goldDark"
+          } ${isDeceased ? "opacity-60" : ""}`}
+        >
+          {member.firstName[0]}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="font-serif-display text-sm font-medium text-tf-textPrimary truncate">
+            {member.firstName} {member.lastName}
+          </p>
+          <p className="text-xs text-tf-textMuted">
+            {member.relationship} &middot; {yearDisplay}
+          </p>
+        </div>
+        <ChevronDown
+          size={14}
+          className={`flex-shrink-0 text-tf-textMuted transition-transform duration-200 ${
+            isExpanded ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="pb-4 pl-[52px] pr-2">
+              {member.role && (
+                <p className="text-xs text-tf-gold font-medium mb-1">
+                  {member.role}
+                </p>
+              )}
+              <p className="text-sm text-tf-textSecondary leading-relaxed">
+                {member.bio}
+              </p>
+              {member.email && (
+                <a
+                  href={`mailto:${member.email}`}
+                  className="text-sm text-tf-gold hover:text-tf-goldDark hover:underline mt-2 inline-block transition-colors"
+                >
+                  {member.email}
+                </a>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function CoupleListCard({
+  primary,
+  spouse,
+  selectedId,
+  onSelect,
+}: {
+  primary: FamilyMember;
+  spouse?: FamilyMember;
+  selectedId: string | null;
+  onSelect: (id: string | null) => void;
+}) {
+  // Get shared children
+  const children = getChildren(primary.id);
+
+  return (
+    <div className="mb-2">
+      {/* Couple pair */}
+      {spouse ? (
+        <div className="bg-tf-backgroundAlt/50 rounded-lg p-2">
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <span className="text-xs text-tf-textMuted font-serif-display">
+              {primary.firstName}
+            </span>
+            <Heart size={10} className="text-tf-gold" />
+            <span className="text-xs text-tf-textMuted font-serif-display">
+              {spouse.firstName}
+            </span>
+          </div>
+          <MemberListItem
+            member={primary}
+            selectedId={selectedId}
+            onSelect={onSelect}
+          />
+          <div className="border-t border-tf-borderLight" />
+          <MemberListItem
+            member={spouse}
+            selectedId={selectedId}
+            onSelect={onSelect}
+          />
+        </div>
+      ) : (
+        <MemberListItem
+          member={primary}
+          selectedId={selectedId}
+          onSelect={onSelect}
+        />
+      )}
+
+      {/* Children */}
+      {children.length > 0 && (
+        <div className="ml-4 mt-2 border-l-2 border-tf-gold/30 pl-4">
+          <p className="text-xs text-tf-textMuted mb-1">Children:</p>
+          {children.map((child, i) => (
+            <div
+              key={child.id}
+              className={
+                i < children.length - 1
+                  ? "border-b border-tf-borderLight"
+                  : ""
+              }
+            >
+              <MemberListItem
+                member={child}
+                selectedId={selectedId}
+                onSelect={onSelect}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function GenerationList({
   generation,
   selectedId,
   onSelect,
+  defaultOpen,
 }: {
   generation: number;
   selectedId: string | null;
   onSelect: (id: string | null) => void;
+  defaultOpen: boolean;
 }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
   const genInfo = GENERATION_LABELS[generation];
   const members = getGeneration(generation);
 
-  const isDeceased = (m: FamilyMember) => !!m.deathYear;
-  const yearDisplay = (m: FamilyMember) =>
-    m.deathYear ? `${m.birthYear}–${m.deathYear}` : `b. ${m.birthYear}`;
+  // Group into couples and singles (skip members already shown as spouse)
+  const rendered = new Set<string>();
+  const groups: { primary: FamilyMember; spouse?: FamilyMember }[] = [];
+
+  members.forEach((member) => {
+    if (rendered.has(member.id)) return;
+    rendered.add(member.id);
+
+    if (member.spouseId && members.find((m) => m.id === member.spouseId)) {
+      const spouse = members.find((m) => m.id === member.spouseId)!;
+      rendered.add(spouse.id);
+      groups.push({ primary: member, spouse });
+    } else {
+      groups.push({ primary: member });
+    }
+  });
 
   return (
     <motion.div
@@ -506,93 +677,56 @@ function GenerationList({
       initial={{ opacity: 0, y: 16 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
       transition={{ duration: 0.5 }}
-      className="mb-12 scroll-mt-24"
+      className="scroll-mt-24 border-b border-tf-borderLight"
     >
-      {/* Generation header */}
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-8 h-8 rounded-full bg-tf-gold/15 flex items-center justify-center">
+      {/* Accordion header */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center gap-3 py-4 text-left"
+      >
+        <div className="w-8 h-8 rounded-full bg-tf-gold/15 flex items-center justify-center flex-shrink-0">
           <span className="text-xs font-semibold text-tf-gold">
             {genInfo.number}
           </span>
         </div>
-        <div>
+        <div className="flex-1 min-w-0">
           <h2 className="font-serif-display text-lg font-semibold text-tf-textPrimary">
-            {genInfo.label}
+            Generation {genInfo.number} — {genInfo.label}
           </h2>
           <p className="text-xs text-tf-textMuted">{genInfo.subtitle}</p>
         </div>
-      </div>
+        <ChevronDown
+          size={18}
+          className={`flex-shrink-0 text-tf-textMuted transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
 
-      {/* Members list */}
-      <div className="ml-4 border-l-2 border-tf-borderLight pl-6">
-        {members.map((member, index) => (
-          <div
-            key={member.id}
-            className={
-              index < members.length - 1
-                ? "border-b border-tf-borderLight"
-                : ""
-            }
+      {/* Accordion body */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden"
           >
-            <button
-              onClick={() =>
-                onSelect(selectedId === member.id ? null : member.id)
-              }
-              className="w-full text-left flex items-center gap-3 py-3 hover:bg-tf-backgroundAlt/50 -mx-2 px-2 rounded-lg transition-colors"
-            >
-              <div
-                className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-sm font-serif-display font-semibold ${
-                  member.gender === "male"
-                    ? "bg-tf-textPrimary/10 text-tf-textPrimary"
-                    : "bg-tf-gold/15 text-tf-goldDark"
-                } ${isDeceased(member) ? "opacity-60" : ""}`}
-              >
-                {member.firstName[0]}
-              </div>
-              <div className="min-w-0">
-                <p className="font-serif-display text-sm font-medium text-tf-textPrimary truncate">
-                  {member.firstName} {member.lastName}
-                </p>
-                <p className="text-xs text-tf-textMuted">
-                  {member.relationship} &middot; {yearDisplay(member)}
-                </p>
-              </div>
-            </button>
-
-            {/* Inline detail expansion for list view */}
-            <AnimatePresence>
-              {selectedId === member.id && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="overflow-hidden"
-                >
-                  <div className="pb-4 pl-[52px] pr-2">
-                    {member.role && (
-                      <p className="text-xs text-tf-gold font-medium mb-1">
-                        {member.role}
-                      </p>
-                    )}
-                    <p className="text-sm text-tf-textSecondary leading-relaxed">
-                      {member.bio}
-                    </p>
-                    {member.email && (
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="text-sm text-tf-gold hover:text-tf-goldDark hover:underline mt-2 inline-block transition-colors"
-                      >
-                        {member.email}
-                      </a>
-                    )}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
-      </div>
+            <div className="pb-6 pl-2">
+              {groups.map((group) => (
+                <CoupleListCard
+                  key={group.primary.id}
+                  primary={group.primary}
+                  spouse={group.spouse}
+                  selectedId={selectedId}
+                  onSelect={onSelect}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -767,6 +901,7 @@ export default function FamilyTree({ viewMode }: FamilyTreeProps) {
               generation={gen}
               selectedId={selectedId}
               onSelect={setSelectedId}
+              defaultOpen={gen === Math.max(...uniqueGenerations)}
             />
           ))
         )}
