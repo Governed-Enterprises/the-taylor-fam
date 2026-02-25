@@ -101,7 +101,189 @@ export const FAMILY_VALUES = [
   "We protect the family name.",
 ] as const;
 
-// 7. Photo Timeline
+// 7. Family Record — Category Config & Entries
+
+export interface FamilyRecordEntry {
+  id: string;
+  date: string;
+  title: string;
+  description: string;
+  category:
+    | "birth"
+    | "home"
+    | "education"
+    | "business"
+    | "legal"
+    | "agriculture"
+    | "faith"
+    | "marriage";
+  photo?: string;
+}
+
+export const RECORD_CATEGORIES = {
+  birth: { icon: "👶", color: "#7ba7c4", label: "Birth" },
+  home: { icon: "🏠", color: "#7a8c6e", label: "Home & Move" },
+  education: { icon: "🎓", color: "#c9a84c", label: "Education" },
+  business: { icon: "💼", color: "#b8860b", label: "Business" },
+  legal: { icon: "⚖️", color: "#a9a9a9", label: "Legal Victory" },
+  agriculture: { icon: "🌾", color: "#8b7355", label: "Land & Agriculture" },
+  faith: { icon: "✡️", color: "#d4af37", label: "Faith Milestone" },
+  marriage: { icon: "💍", color: "#c48a8a", label: "Marriage & Family" },
+} as const;
+
+export const FAMILY_RECORD: FamilyRecordEntry[] = [
+  // ── Grandparents Era ──
+  {
+    id: "rec-01",
+    date: "1942",
+    title: "[Placeholder] James Taylor Born",
+    description:
+      "The patriarch of the Taylor line was born. His life would lay the groundwork for everything the family would become.",
+    category: "birth",
+  },
+  {
+    id: "rec-02",
+    date: "1945",
+    title: "[Placeholder] Mary Taylor Born",
+    description:
+      "The matriarch whose faith and warmth would hold the family together for decades.",
+    category: "birth",
+  },
+  {
+    id: "rec-03",
+    date: "1964",
+    title: "[Placeholder] James & Mary Married",
+    description:
+      "A union built on love, faith, and shared vision. Their marriage set the standard for generations to follow.",
+    category: "marriage",
+  },
+  {
+    id: "rec-04",
+    date: "1965",
+    title: "[Placeholder] First Family Home Purchased",
+    description:
+      "James and Mary purchased their first home — the house that would become the gathering place for the entire family.",
+    category: "home",
+  },
+  {
+    id: "rec-05",
+    date: "1970",
+    title: "[Placeholder] Family Land Acquired",
+    description:
+      "A parcel of land was acquired by the family. A foundation for generational wealth and self-sufficiency.",
+    category: "agriculture",
+  },
+
+  // ── Parents Era ──
+  {
+    id: "rec-06",
+    date: "1968",
+    title: "[Placeholder] Michael Taylor Born",
+    description:
+      "The firstborn son of James and Mary. He would carry the family name with purpose and conviction.",
+    category: "birth",
+  },
+  {
+    id: "rec-07",
+    date: "1970",
+    title: "[Placeholder] Sandra Williams Born",
+    description:
+      "Born to Robert and Helen Williams. Her strength and faith would become pillars of the Taylor household.",
+    category: "birth",
+  },
+  {
+    id: "rec-08",
+    date: "1990",
+    title: "[Placeholder] Michael & Sandra Married",
+    description:
+      "Two families joined together. Their union produced the next generation of Taylors.",
+    category: "marriage",
+  },
+
+  // ── Current Generation ──
+  {
+    id: "rec-09",
+    date: "1992",
+    title: "Terry Taylor Born",
+    description:
+      "The son who would go on to build Governed Enterprises and establish the Taylor family digital legacy.",
+    category: "birth",
+  },
+  {
+    id: "rec-10",
+    date: "2010",
+    title: "[Placeholder] First College Graduate",
+    description:
+      "A milestone in the family's educational journey — the first Taylor to earn a college degree.",
+    category: "education",
+  },
+  {
+    id: "rec-11",
+    date: "2015",
+    title: "[Placeholder] Faith Covenant Established",
+    description:
+      "A defining spiritual moment for the family. A covenant was made that would guide every decision going forward.",
+    category: "faith",
+  },
+  {
+    id: "rec-12",
+    date: "2018",
+    title: "[Placeholder] First Son Born",
+    description:
+      "The eldest son arrived — the beginning of Generation 4. A new chapter in the Taylor story.",
+    category: "birth",
+  },
+  {
+    id: "rec-13",
+    date: "2019",
+    title: "[Placeholder] Terry & [Wife] Married",
+    description:
+      "A covenant union. Together they would build the Taylor household and raise the next generation.",
+    category: "marriage",
+  },
+  {
+    id: "rec-14",
+    date: "2020",
+    title: "[Placeholder] Second Son Born",
+    description:
+      "The family grew again. Kind-hearted and wise beyond his years from the start.",
+    category: "birth",
+  },
+  {
+    id: "rec-15",
+    date: "2022",
+    title: "[Placeholder] Third Son Born",
+    description:
+      "The youngest son — bold, joyful, and the spark that lights up the room.",
+    category: "birth",
+  },
+  {
+    id: "rec-16",
+    date: "2023",
+    title: "[Placeholder] Legal Victory",
+    description:
+      "A significant legal milestone for the family. Justice prevailed and the family stood stronger for it.",
+    category: "legal",
+  },
+  {
+    id: "rec-17",
+    date: "2024",
+    title: "Governed Enterprises Founded",
+    description:
+      "Terry officially launched Governed Enterprises — the business arm of the Taylor family legacy.",
+    category: "business",
+  },
+  {
+    id: "rec-18",
+    date: "2025",
+    title: "Taylor Family Website Launched",
+    description:
+      "The digital home of the Taylor family goes live — connecting generations past, present, and future.",
+    category: "business",
+  },
+];
+
+// 8. Photo Timeline
 export const PHOTO_TIMELINE = [
   {
     year: "2019",
