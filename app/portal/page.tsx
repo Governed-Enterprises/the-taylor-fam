@@ -3,9 +3,17 @@ import PortalLogin from "@/components/PortalLogin";
 import FamilyCrest from "@/components/FamilyCrest";
 
 export const metadata: Metadata = {
-  title: "Family Portal",
+  title: "Family Portal — The Taylor Family",
   description:
     "Sign in to the Taylor family portal for private family content.",
+  openGraph: {
+    title: "Family Portal — The Taylor Family",
+    description: "A private space for Taylor family members.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Family Portal — The Taylor Family",
+  },
 };
 
 export default function PortalPage() {

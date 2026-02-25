@@ -5,9 +5,18 @@ import PhotoTimeline from "@/components/PhotoTimeline";
 import { CrossPageLinks } from "@/components/CrossPageNav";
 
 export const metadata: Metadata = {
-  title: "Our Legacy",
+  title: "Our Legacy — The Taylor Family Story",
   description:
     "The history, values, and story of the Taylor family — a legacy written in love.",
+  openGraph: {
+    title: "Our Legacy — The Taylor Family Story",
+    description:
+      "The history, values, and story of the Taylor family — a legacy written in love.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Our Legacy — The Taylor Family Story",
+  },
 };
 
 export default function LegacyPage() {

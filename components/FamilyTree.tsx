@@ -46,7 +46,16 @@ function PersonNode({
     <div
       ref={nodeRef}
       data-member-id={member.id}
+      role="button"
+      tabIndex={0}
+      aria-label={`Family member: ${member.firstName} ${member.lastName}, ${member.relationship}`}
       onClick={() => onSelect(isSelected ? null : member.id)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect(isSelected ? null : member.id);
+        }
+      }}
       className={`relative w-[160px] bg-white rounded-xl p-3 border cursor-pointer transition-all duration-200 z-[1] ${
         isSelected
           ? "border-tf-gold card-shadow-hover -translate-y-0.5"

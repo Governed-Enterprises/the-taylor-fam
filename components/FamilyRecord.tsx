@@ -92,7 +92,8 @@ function EventCard({
         transition={{ duration: 0.5, delay: index * 0.1 }}
         className="ml-10 md:ml-0 md:w-[calc(50%-28px)] max-w-[400px]"
       >
-        <div
+        <article
+          aria-label={`${cat.label}: ${entry.title}, ${formatDate(entry.date)}`}
           className="bg-tf-card border border-tf-borderLight rounded-xl p-5"
           style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}
         >
@@ -128,7 +129,7 @@ function EventCard({
               <span className="text-tf-textMuted text-sm">Photo</span>
             </div>
           )}
-        </div>
+        </article>
       </motion.div>
 
       {/* ── Center dot + connector (desktop only) ── */}
@@ -219,8 +220,17 @@ export default function FamilyRecord({
     );
   }
 
+  const srMessage =
+    activeCategories.length > 0
+      ? `Showing ${entries.length} events matching selected filters`
+      : `Showing all ${entries.length} events`;
+
   return (
     <div className="relative max-w-[900px] mx-auto">
+      {/* Screen reader announcement for filter changes */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {srMessage}
+      </div>
       {/* ── The vertical center line ── */}
       {/* Mobile: left-aligned (20px from left). Desktop: centered. */}
       <div

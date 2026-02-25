@@ -1,10 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { GitBranch, List } from "lucide-react";
-import FamilyTree from "@/components/FamilyTree";
 import { GENERATION_LABELS } from "@/lib/familyData";
 import { CrossPageLinks } from "@/components/CrossPageNav";
+
+const FamilyTree = dynamic(() => import("@/components/FamilyTree"), {
+  loading: () => (
+    <div className="flex items-center justify-center py-20">
+      <div className="w-8 h-8 border-2 border-tf-gold border-t-transparent rounded-full animate-spin" />
+    </div>
+  ),
+  ssr: false,
+});
 
 const generations = Object.values(GENERATION_LABELS).filter((g) => g.number <= 4);
 

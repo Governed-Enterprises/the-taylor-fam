@@ -1,10 +1,28 @@
 import type { Metadata } from "next";
-import QRGenerator from "@/components/QRGenerator";
+import dynamic from "next/dynamic";
+
+const QRGenerator = dynamic(() => import("@/components/QRGenerator"), {
+  loading: () => (
+    <div className="flex items-center justify-center py-20">
+      <div className="w-8 h-8 border-2 border-tf-gold border-t-transparent rounded-full animate-spin" />
+    </div>
+  ),
+  ssr: false,
+});
 
 export const metadata: Metadata = {
-  title: "QR Code",
+  title: "Family QR Code — The Taylor Family",
   description:
     "Scan or download a QR code to share The Taylor Family website with family members.",
+  openGraph: {
+    title: "Family QR Code — The Taylor Family",
+    description:
+      "Scan or download a QR code to share The Taylor Family website.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Family QR Code — The Taylor Family",
+  },
 };
 
 export default function QRPage() {
