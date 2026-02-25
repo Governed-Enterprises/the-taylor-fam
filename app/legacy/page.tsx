@@ -11,23 +11,20 @@ export const metadata: Metadata = {
 
 export default function LegacyPage() {
   return (
-    <div className="page-container">
+    <div className="page-container pb-16">
       {/* Page Header */}
-      <section className="bg-warm-gradient py-16 sm:py-20">
-        <div className="section-container text-center">
-          <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold text-tf-textPrimary mb-4">
-            Our Legacy
-          </h1>
-          <p className="text-tf-textMuted text-lg max-w-2xl mx-auto">
-            Every family has a story worth telling. This is ours — a tapestry of
-            faith, love, and perseverance woven across generations.
-          </p>
-          <div className="w-24 h-0.5 bg-tf-gold mx-auto mt-6" />
-        </div>
+      <section className="pt-20 px-6 text-center">
+        <h1 className="font-serif-display text-4xl font-bold text-tf-textPrimary">
+          Our Legacy
+        </h1>
+        <p className="text-lg text-tf-textSecondary max-w-[500px] mx-auto mt-4">
+          The story of the Taylor family — where we come from, what we stand
+          for, and where we are going.
+        </p>
       </section>
 
-      {/* Family History Narrative */}
-      <section className="section-container">
+      {/* Section A — Family History */}
+      <section className="px-6">
         <FamilyHistory />
       </section>
 
@@ -39,7 +36,7 @@ export default function LegacyPage() {
       </section>
 
       {/* Photo Timeline */}
-      <section className="section-container pb-16">
+      <section className="section-container">
         <PhotoTimeline />
       </section>
     </div>
