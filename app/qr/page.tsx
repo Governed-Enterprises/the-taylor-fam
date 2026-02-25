@@ -9,23 +9,19 @@ export const metadata: Metadata = {
 
 export default function QRPage() {
   return (
-    <div className="page-container">
+    <div className="page-container pb-24">
       {/* Page Header */}
-      <section className="bg-warm-gradient py-16 sm:py-20">
-        <div className="section-container text-center">
-          <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-bold text-tf-textPrimary mb-4">
-            Share Our Site
-          </h1>
-          <p className="text-tf-textMuted text-lg max-w-2xl mx-auto">
-            Scan the QR code or download it to share with family members. Keep
-            everyone connected.
-          </p>
-          <div className="w-24 h-0.5 bg-tf-gold mx-auto mt-6" />
-        </div>
+      <section className="pt-20 px-6 text-center">
+        <h1 className="font-serif-display text-3xl font-bold text-tf-textPrimary">
+          Your Family Link
+        </h1>
+        <p className="text-base text-tf-textSecondary mt-3">
+          Scan or share this code to visit thetaylorfam.net
+        </p>
       </section>
 
-      {/* QR Code */}
-      <section className="section-container py-16">
+      {/* QR Generator */}
+      <section className="mt-16 px-6">
         <QRGenerator />
       </section>
     </div>
